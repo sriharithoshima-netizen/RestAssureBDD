@@ -3,12 +3,26 @@ package definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class Login {
+
     @Given("User opens the application")
     public void
     user_open_the_application() {
         System.out.println("Application Opened");
+        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
+
+        Response response = given()
+                .header("Content-Type", "application/json")
+                .when()
+                .get("/users/1");
+        System.out.println("Response: " + response.statusCode());
     }
     @When("User enters username as {string}")
     public void
