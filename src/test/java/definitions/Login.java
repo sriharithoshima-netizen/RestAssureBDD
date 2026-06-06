@@ -28,4 +28,9 @@ public class Login {
          public void user_should_be_navigated_to_home_page(){
             System.out.println("Home Page Displayed");
         }
+
+    @Then("User should be navigated to {string}")
+    public void userShouldBeNavigatedTo(String arg0) {
+        System.out.println("Testing messgae");
     }
+}
